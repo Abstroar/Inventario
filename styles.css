@@ -1,0 +1,81 @@
+body{
+    background-color: aqua;
+}
+.box{
+    display: flex;
+    justify-content: space-evenly;
+    /*width: 95vh; */
+    height:calc(100vh - 100px);
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: aqua;
+    
+
+}
+.loginbox{
+    
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: flex-start;
+    background-color: white;
+    margin: 0%;
+    width: 35%;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    padding-left: 20px;
+    padding-top:100px ;
+}
+/* .loginbox form{
+    margin-left: 10px;
+} */
+.introbox{
+    background-color: red;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    color: rgb(0, 0, 0);
+    background-image: url("bioxes.jpg");
+    background-size: cover;
+}
+.introboxtext {
+    margin: 100px auto auto 150px;
+}
+.introboxtext h2 {
+    font-size: 50px;
+    color: white;
+}
+.introboxtext p {
+    font-size: 30px;
+    color: white;
+}
+.loginbox h1 {
+    font-size: 5rem;
+}
+
+.loginbox form input{
+    width:100%;
+    border:none;
+    padding: 10px 0px;
+    border-bottom: 1px solid;
+    outline: none;
+}
+.memorycheck{
+    
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+    margin-right: 0px;
+    
+}
+.memorycheck input[type="checkbox"] {
+    margin-right: 8px; /* Space between checkbox and label */
+    width: 16px;
+    height: 16px;
+    transform: translateY(5px);
+}
