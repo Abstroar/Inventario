@@ -10,7 +10,7 @@ body{
     margin-right: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
-    background-color: aqua;
+    background-color: white;
     
 
 }
@@ -78,4 +78,7 @@ body{
     width: 16px;
     height: 16px;
     transform: translateY(5px);
+}
+button {
+    display:block;
 }
