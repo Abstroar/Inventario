@@ -41,23 +41,26 @@
             <div class="introbox">
                 <div class="introboxtext">
                     <h2>Hello everyone</h2><br>
-                    <p>Welcome to the the inventario.</p><br>
-                    <p>This is a awebsite designed to work as inventory management service provider to its user.</p>
+                    <p>Welcome to theinventario.</p><br>
+                    <p>This is a website designed to work as inventory management service provider to its user.</p>
                 </div>
             </div>
             <div class="loginbox">
                 <h1>Login</h1>
-                <p style="color:grey">Do not have a account create a account</p>
-                <form>
-                <input type="text" name="Email" placeholder="Email"><br>
-                <input type="password" name="Password" placeholder="Password">
+                <p style="color:grey">
+                    Do not have an account create account?
+                    <a href="{{ url_for('register') }}" class="text-primary">Register</a>
+                </p>
+                <form action="{{ url_for('login') }}" method="POST">
+                <input type="text" name="Email" placeholder="Email" required><br>
+                <input type="password" name="Password" placeholder="Password" required>
                 <div class="memorycheck">
                     <input type="checkbox" >
                     <label>Remember me</label><br>
                     <br>
                 </div>
-                <button type="button" class="btn btn-primary rounded-pill px-3" id="login_button">Log in </button>
-                
+                <button type="submit" class="btn btn-primary rounded-pill px-3" id="login_button">Log in </button>
+
                 </form>
             </div>
         </div>
