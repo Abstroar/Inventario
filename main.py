@@ -56,9 +56,20 @@ with app.app_context():
 
 @app.route("/",methods=['POST','GET'])
 def login():
-    if request.method=="POST":
-        print("hii")
-        print(f"request {request.form.get('Email')}")
+    if request.method == "POST":
+        email = request.form.get('Email')
+        password = request.form.get('Password')
+
+        user = User.query.filter_by(email=email).first()
+        if not user:
+
+            print("User not found")
+            return redirect(url_for("login"))
+
+        if user.password != password:
+            print("wrong password")
+            return redirect(url_for("login"))
+
         return redirect(url_for("home"))
     return render_template("login.html")
 
@@ -68,11 +79,14 @@ def register():
         company_name = request.form.get('Company')
         company = Company.query.filter_by(name=company_name).first()
 
-        # If the company does not exist, handle the error or create it
         if not company:
-            flash("Company not found. Please select a valid company.", "error")
+            print("company does not exist ")
             return redirect(url_for("register"))
-
+        email = request.form.get('Email')
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            print("User already exists.")
+            return redirect(url_for("login"))
         data = User(
             username=request.form.get('Username'),
             email=request.form.get('Email'),
@@ -87,6 +101,8 @@ def register():
         return redirect(url_for("login"))
     return render_template("register.html")
 
+
+
 @app.route("/home",methods=['POST','GET'])
 def home():
     result = db.session.execute(db.select(Items))
@@ -96,33 +112,54 @@ def home():
 
 @app.route("/add-company",methods=['POST','GET'])
 def company_adder():
-    # com = Company(
-    #     name="abhi"
-    # )
-    # db.session.add(com)
-    # db.session.commit()
+    if request.method == "POST":
+
+        company_name = request.form.get('Company')
+
+        existing_company = Company.query.filter_by(name=company_name).first()
+        if existing_company:
+            print("Company already exists. Please choose a different name.")
+            return redirect(url_for("company_adder"))
+
+        new_company = Company(name=company_name)
+
+
+        db.session.add(new_company)
+        db.session.commit()
+
+        print(f"Company '{company_name}' added successfully!")
+        return redirect(url_for("register"))
+
     return render_template("company_adder.html")
 
 @app.route("/add-items",methods=['POST','GET'])
 def item_adder():
     if request.method == "POST":
-        company = Company.query.filter_by(name="abhi").first()
+        title = request.form.get('title')
+        subtitle = request.form.get('subtitle')
+        price = request.form.get('price')
+        quantity = request.form.get('quantity')
+
+        existing_item = Items.query.filter_by(title=title).first()
+        if existing_item:
+            print("An item with this title already exists")
+            return redirect(url_for("item_adder"))
+
+        company = Company.query.filter_by(
+            name="abhi").first()
         data = Items(
-            title=request.form.get('title'),
-            subtitle=request.form.get('subtitle'),
-            price=request.form.get('price'),
-            quantity=request.form.get('quantity'),
+            title=title,
+            subtitle=subtitle,
+            price=price,
+            quantity=quantity,
             company=company,
         )
         db.session.add(data)
         db.session.commit()
-        print("daasas")
         return redirect(url_for("home"))
     return render_template("edit_item.html")
 
-# @app.route("/edit-item",methods=['POST','GET'])
-# def item_editer():
-#     return render_template("edit_item.html")
+
 """"
 company = Company.query.filter_by(name="abhi").first()
     data = Items(

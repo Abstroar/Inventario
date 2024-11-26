@@ -47,9 +47,11 @@
       <div class="search-box">
         <input type="text" id="search" placeholder="Search products..." />
       </div>
-      <button id="addProductBtn" class="btn btn-primary">
-        <span class="icon">+</span> Add Product
-      </button>
+      <a href="{{ url_for('item_adder') }}">
+  <button id="addProductBtn" class="btn btn-primary">
+      <span class="icon">+</span> Add Product
+  </button>
+    </a>
     </div>
 
     <!-- Add Product Form -->

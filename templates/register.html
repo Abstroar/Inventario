@@ -50,7 +50,7 @@
                 <p style="color:grey">
                     Already have an account?
                     <a href="/login" class="text-primary">Login</a><br>
-                    <a href="/login" class="text-primary">Create new company?</a><br>
+                    <a href="{{ url_for('company_adder') }}" class="text-primary">Create new company?</a><br>
                 </p>
                 <form action="/register" method="POST">
                 <input type="text" name="Username" placeholder="Name"><br>
