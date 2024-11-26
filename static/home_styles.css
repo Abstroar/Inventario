@@ -1,0 +1,121 @@
+/* General Reset */
+body, h1, h2, input, button, table {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 20px;
+  }
+  
+  /* Container */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Search and Add Bar */
+  .search-add-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .search-box {
+    flex: 1;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+  .btn-success {
+    background-color: #28a745;
+    color: #fff;
+  }
+  .btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+  }
+  
+  /* Form */
+  .form {
+    margin-bottom: 20px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  .form.hidden {
+    display: none;
+  }
+  .form-group {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .form-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Table */
+  .table-container {
+    overflow-x: auto;
+  }
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .product-table th, .product-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  .product-table th {
+    background-color: #f1f1f1;
+  }
+  .product-table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* Buttons */
+  .btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .btn-edit {
+    color: #007bff;
+  }
+  .btn-delete {
+    color: #dc3545;
+  }
+  
