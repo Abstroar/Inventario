@@ -59,19 +59,20 @@ def login():
     if request.method == "POST":
         email = request.form.get('Email')
         password = request.form.get('Password')
-
         user = User.query.filter_by(email=email).first()
         if not user:
-
             print("User not found")
             return redirect(url_for("login"))
-
         if user.password != password:
             print("wrong password")
             return redirect(url_for("login"))
-
         return redirect(url_for("home"))
     return render_template("login.html")
+
+
+
+
+
 
 @app.route("/register",methods=['POST','GET'])
 def register():
@@ -101,6 +102,38 @@ def register():
         return redirect(url_for("login"))
     return render_template("register.html")
 
+
+@app.route("/edit-item/<int:item_id>", methods=['GET', 'POST'])
+def edit_item(item_id):
+    item = Items.query.get(item_id)
+    if not item:
+        print("Item not found!")
+        return redirect(url_for("home"))
+
+    if request.method == 'POST':
+        item.title = request.form.get('title')
+        item.subtitle = request.form.get('subtitle')
+        item.price = request.form.get('price')
+        item.quantity = request.form.get('quantity')
+
+        db.session.commit()
+        print("Item updated successfully!")
+        return redirect(url_for("home"))
+
+    return render_template("edit_x_item.html", item=item)
+
+
+@app.route("/delete-item/<int:item_id>", methods=['GET'])
+def delete_item(item_id):
+    item = Items.query.get(item_id)
+    if not item:
+        print("Item not found!")
+        return redirect(url_for("home"))
+
+    db.session.delete(item)
+    db.session.commit()
+    print("Item deleted successfully!")
+    return redirect(url_for("home"))
 
 
 @app.route("/home",methods=['POST','GET'])
@@ -160,17 +193,5 @@ def item_adder():
     return render_template("edit_item.html")
 
 
-""""
-company = Company.query.filter_by(name="abhi").first()
-    data = Items(
-        title="bed",
-        subtitle="furniture",
-        price=100,
-        quantity=2,
-        company=company,
-    )
-    db.session.add(data)
-    db.session.commit()
-"""
 if __name__ == "__main__":
     app.run(debug=True, port=5002)

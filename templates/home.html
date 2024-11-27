@@ -89,8 +89,12 @@
             <td>{{ item.quantity }}</td>
             <td>${{ item.price }}</td>
             <td>
-              <button class="btn-icon btn-edit">✏️</button>
-              <button class="btn-icon btn-delete">🗑️</button>
+                <a href="{{ url_for('edit_item', item_id=item.id) }}">
+                <button class="btn-icon btn-edit">✏️</button>
+                </a>
+                <a href="{{ url_for('delete_item', item_id=item.id) }}">
+                <button class="btn-icon btn-delete">🗑️</button>
+                </a>
             </td>
           </tr>
         {% endfor %}
